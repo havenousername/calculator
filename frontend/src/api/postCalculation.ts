@@ -5,7 +5,6 @@ export const postCalculation = async (character: string, prevCharacter?: string)
   Omit<State, 'fx' | 'prevFx'> &
   {stateName: string, operation: string}
 > => {
-  console.log(character, prevCharacter);
   const current = await fetch('http://localhost:3333/api/calculation', {
     method: 'POST',
     headers: {
