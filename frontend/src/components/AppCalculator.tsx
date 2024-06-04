@@ -1,15 +1,14 @@
 import {operators, SpecialStates} from "../../../types/types.ts";
 import {BackspaceIcon} from "@heroicons/react/24/outline";
 import {useEffect, useState} from "react";
-import {postCalculation} from "../api/postCalculation.ts";
+import {CalculationRes, postCalculation} from "../api/postCalculation.ts";
 
 const AppCalculator = () => {
   const [result, setResult] = useState(0);
   const [sequence, setSequence] = useState<string[]>([]);
   const [hasError, setHasError] = useState(false);
 
-  const onButtonClick = async (char: string) => {
-    const calculation = await postCalculation(char, char === SpecialStates.BACK ? sequence.at(-1) ?? '0' : undefined);
+  const handleSequence = (char: string, calculation: CalculationRes) => {
     if (char === SpecialStates.BACK) {
       setSequence((seq) => seq.slice(0, -1));
     } else if (char == SpecialStates.RESULT) {
@@ -19,10 +18,15 @@ const AppCalculator = () => {
     } else {
       setSequence(seq => [...seq, calculation.incomingInput]);
     }
+  };
+
+  const onButtonClick = async (char: string) => {
+    const calculation = await postCalculation(char, char === SpecialStates.BACK ? sequence.at(-1) ?? '0' : undefined);
+    handleSequence(char, calculation);
     console.log(calculation.result);
     setResult(calculation.result);
     setHasError(calculation.error);
-  }
+  };
 
   useEffect(() => {
     postCalculation(SpecialStates.ZERO);
