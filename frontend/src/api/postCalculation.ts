@@ -4,7 +4,7 @@ export type CalculationRes = Omit<State, 'fx' | 'prevFx'> &
   {stateName: string, operation: string};
 
 export const postCalculation = async (character: string, prevCharacter?: string): Promise<CalculationRes> => {
-  const current = await fetch(`${import.meta.env.BACKEND_URL}/api/calculation`, {
+  const current = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/calculation`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
