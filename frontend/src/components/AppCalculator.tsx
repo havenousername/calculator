@@ -21,8 +21,10 @@ const AppCalculator = () => {
   };
 
   const onButtonClick = async (char: string) => {
-    const calculation = await postCalculation(char, char === SpecialStates.BACK ? sequence.at(-1) ?? '0' : undefined);
+    const previousCharacter = char === SpecialStates.BACK ? sequence.at(-1) ?? '0' : undefined;
+    const calculation = await postCalculation(char, previousCharacter);
     handleSequence(char, calculation);
+
     console.log(calculation.result);
     setResult(calculation.result);
     setHasError(calculation.error);
@@ -73,15 +75,26 @@ const AppCalculator = () => {
     </button>
   );
 
+  const zeroCContent = (
+    <button
+      className={'col-span-2 bg-[#00111F] border border-solid border-[#ACA3A3] rounded-2xl ' +
+        'flex justify-center items-center cursor-pointer'}
+      onClick={() => onButtonClick(SpecialStates.ZERO)}
+    >
+      <span className='text-6xl leading-3'>{'C'}</span>
+    </button>
+  )
+
   return (
     <div className='grid grid-cols-4 grid-rows-6 gap-6 w-full px-4'>
       <div
         className='h-[120px] col-span-4 bg-[#00080F] rounded-xl border border-solid border-[#62626D] flex flex-col justify-end items-end p-4'>
-        <p className='text-xl opacity-80'>{ sequenceContent }</p>
+        <p className='text-xl opacity-80'>{sequenceContent }</p>
         <h4 className='text-3xl font-medium'>Result: {result}</h4>
       </div>
-      <div className='col-span-3 grid grid-cols-3'>
+      <div className='col-span-3 grid grid-cols-4 gap-8'>
         {backspaceContent}
+        {zeroCContent}
       </div>
       <div className={'col-span-1 row-span-4 flex flex-col gap-8'}>
         {operatorsContent}

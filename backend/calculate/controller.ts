@@ -14,6 +14,8 @@ export const postCalculation = (req: Request) => {
   } else if (nextCharacter === SpecialStates.ZERO) {
     state.fx = appFxStates.initState;
     state.prevFx = appFxStates.initState;
+    state.error = false;
+    state.result = 0;
   } else if (!state.error) {
     state.incomingInput = nextCharacter;
     state.fx(state);
