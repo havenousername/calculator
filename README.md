@@ -48,7 +48,8 @@ Project is monorepo with the following structure
 ### Implementation 
 
 Here I have described using state-transitions the way how logic part will work. Some things have changed (like the idea of the error, and introduction of one way down backward button), however the central idea is the same.
-![states-for-calculator.svg](..%2F..%2F..%2FDownloads%2Fstates-for-calculator.svg)
+![Alt text](states for calculation)
+<img src="./docs/states-for-calculator.svg">
 #### State 
 Our state is simple object 
 ```typescript
