@@ -44,6 +44,7 @@ Project is monorepo with the following structure
 1. `/backend` - Backend express server with typescript support. Runs using `nodemon` node.js application and its endpoint 
 2. `/frontend` - Frontend react application using vite as a bundler
 3. `/types` - common Typescript definitions which could be used both on frontend and backend
+4. `/docs` - files related to the documentation 
 
 ### Implementation 
 
