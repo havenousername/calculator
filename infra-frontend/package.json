@@ -1,0 +1,16 @@
+{
+    "name": "infra-frontend",
+    "main": "index.ts",
+    "devDependencies": {
+        "@types/node": "^18",
+        "typescript": "^5.9.3"
+    },
+    "type": "module",
+    "dependencies": {
+        "@pulumi/aws": "^7.0.0",
+        "@pulumi/awsx": "^3.0.0",
+        "@pulumi/pulumi": "^3.113.0",
+        "mime": "^4.1.0",
+        "ts-node": "^10"
+    }
+}

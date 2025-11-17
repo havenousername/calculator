@@ -1,0 +1,11 @@
+name: infra-frontend
+description: Frontend deployment to AWS s3
+runtime:
+  name: nodejs
+  options:
+    nodeargs: "--loader ts-node/esm --no-warnings"
+    packagemanager: pnpm
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: aws-typescript
