@@ -33,7 +33,7 @@ yarn-debug.log*
 yarn-error.log*
 
 **/.DS_Store
-**/.env.local
+frontend/.env.development
 **/.env.development.local
 **/.env.test.local
 **/.env.production.local

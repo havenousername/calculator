@@ -8,4 +8,10 @@ router.post('/calculation', (req, res) => {
 });
 
 
+router.get('/health', (_, res) => {
+  res.status(200).send({
+    message: process.env.MESSAGE ?? 'OK',
+  });
+})
+
 export default router;

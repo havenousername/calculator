@@ -4,6 +4,8 @@ import * as awsx from "@pulumi/awsx";
 import * as fs from "fs";
 import * as path from "path";
 import mime from "mime";
+import crypto from "crypto";
+
 
 function createPublicReadPolicy(bucketName: string): string {
     return JSON.stringify({
@@ -19,6 +21,10 @@ function createPublicReadPolicy(bucketName: string): string {
             ]
         }]
     });
+}
+
+const getFileContentHash = (filePath: string) => {
+    return crypto.createHash("sha256").update(fs.readFileSync(filePath).toString()).digest("hex")
 }
 
 function addFolderContents(sideDir: string, prefix: string = '', objects: pulumi.Output<string>[] = []) {
@@ -37,6 +43,7 @@ function addFolderContents(sideDir: string, prefix: string = '', objects: pulumi
             bucket: bucket,
             source: new pulumi.asset.FileAsset(filePath),
             contentType: mime.getType(filePath) || undefined,
+            etag: getFileContentHash(filePath),
         });
 
         objects.push(object.id);

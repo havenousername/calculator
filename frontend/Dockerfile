@@ -1,14 +1,13 @@
 FROM node:21-alpine
 
-WORKDIR /app
+WORKDIR /app/frontend
 
+COPY ./frontend/package*.json ./
+COPY ./types ../types/
+RUN npm install
 
-COPY ./frontend/package*.json ./frontend/
-COPY ./types ./types/
-RUN cd frontend && npm install
-
-COPY ./frontend  ./frontend/
-RUN cd frontend && npm run build
+COPY ./frontend  ./
+RUN npm run build
 
 
 
