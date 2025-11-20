@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: calculator-backend-pod
+spec:
+  containers:
+    - name: calculator-backend-container
+      image: calculator-backend:v4
+      ports:
+        - containerPort: 8080

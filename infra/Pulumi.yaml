@@ -1,0 +1,10 @@
+name: calculator-backend
+description: A minimal project for the calculator application to run it in the aws infrastructure using kubernetes or EKS
+runtime:
+  name: nodejs
+  options:
+    packagemanager: pnpm
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: aws-typescript

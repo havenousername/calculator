@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calculator-backend-deployment
+spec:
+  replicas: 2 # run two copies of our pod
+  selector:
+    matchLabels:
+      app: calculator-backend-pod
+  template:
+    metadata:
+      labels:
+        app: calculator-backend-pod
+    spec:
+      containers:
+        - name: calculator-backend-container
+          image: calculator-backend:v4
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: calculator-backend-config
+                  key: MESSAGE
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: calculator-backend-secrets
+                  key: API_KEY

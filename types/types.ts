@@ -1,4 +1,4 @@
-export const operators = ['*', '/', '+', '-'] as const;
+ export const operators = ['*', '/', '+', '-'] as const;
 export type Operator = typeof operators[number];
 
 type ValueOf<T> = T[keyof T];
